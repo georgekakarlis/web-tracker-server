@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Event</title>
+    <script>
+        function sendTrackingData() {
+            // Example data to send
+            const data = {
+                event: 'page_view',
+                timestamp: new Date().toISOString(),
+                details: {
+                    page: 'index',
+                    action: 'view'
+                }
+            };
+
+            fetch('http://localhost:9000/sites/1/track', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => console.log('Success:', data))
+            .catch((error) => console.error('Error:', error));
+        }
+
+        // Send data when the page loads
+        window.onload = sendTrackingData;
+    </script>
+</head>
+<body>
+    <h1>Tracking Test Page</h1>
+    <p>This page sends tracking data to the server when loaded.</p>
+</body>
+</html>
