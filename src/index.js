@@ -77,10 +77,11 @@ const sendEmail = (siteId) => {
     });
 };
 
+sendEmail(1);
 
 // Schedule cron-job to run every week
 cron.schedule('0 0 * * 0', () => {
-    sendEmail(1);
+    
    sendEmail(2);
   });
 
