@@ -26,13 +26,13 @@ const trackData = (siteId, data) => {
 };
 
 // Endpoint for site 1
-app.post('/sites/1/track', (req, res) => {
+app.post('/sites/1/trackitbaby/yes/you', (req, res) => {
     trackData(1, req.body);
     res.send('Data tracked for site 1');
 });
 
 // Endpoint for site 2
-app.post('/sites/2/track', (req, res) => {
+app.post('/sites/2/trackitbaby/yes/you', (req, res) => {
     trackData(2, req.body);
     res.send('Data tracked for site 2');
 });
@@ -77,11 +77,11 @@ const sendEmail = (siteId) => {
     });
 };
 
-sendEmail(1);
+
 
 // Schedule cron-job to run every week
 cron.schedule('0 0 * * 0', () => {
-    
+   sendEmail(1);
    sendEmail(2);
   });
 
