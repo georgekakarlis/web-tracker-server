@@ -27,14 +27,18 @@ const trackData = (siteId, data) => {
 
 // Endpoint for site 1
 app.post('/sites/1/trackitbaby/yes/you', (req, res) => {
-    trackData(1, req.body);
-    res.send('Data tracked for site 1');
+    try {
+        trackData(1, req.body);
+        res.status(200).send({ message: "Data tracked successfully" });
+    } catch (error) {
+        res.status(500).send({ error: "Failed to track data" });
+    }
 });
 
 // Endpoint for site 2
 app.post('/sites/2/trackitbaby/yes/you', (req, res) => {
     trackData(2, req.body);
-    res.send('Data tracked for site 2');
+    
 });
 
 let config = {
